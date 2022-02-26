@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: golang-helloword
+  labels:
+    app: golang-helloword
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: golang-helloword
+  template:
+    metadata:
+      name: golang-helloword
+      labels:
+        name: golang-helloword
+    spec:
+      containers:
+        - name: golang-helloword
+          image: danangkonang/helloword:latest
+          ports:
+            - containerPort: 5000
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: golang-helloword-service
+spec:
+  type: NodePort
+  selector:
+    name: golang-helloword
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30001
