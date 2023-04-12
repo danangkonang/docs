@@ -22,4 +22,21 @@ docker container start <container name or id>
 # remove image
 docker rmi <image id>
 
+# remove all image
+docker rmi $(docker images -q)
+
+# remove all container running
+docker rm $(docker ps --filter status=exited -q)
+
+# stop
+docker stop $(docker ps -aq)
+
+```
+
+### Docker - Bind for 0.0.0.0:4000 failed: port is already allocated
+
+```bash
+sudo service docker stop
+
+sudo rm -f /var/lib/docker/network/files/local-kv.db
 ```

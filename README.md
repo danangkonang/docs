@@ -8,6 +8,7 @@
 - [mysql](https://github.com/danangkonang/docs/blob/master/docs/mysql.md)
 - [psql](https://github.com/danangkonang/docs/blob/master/docs/psql.md)
 - [virtualenv](https://github.com/danangkonang/docs/blob/master/docs/virtualenv.md)
+- [linux](https://github.com/danangkonang/docs/blob/master/docs/linux.md)
 
 <!-- ```
 sudo dd if=kali-linux-2021.4-installer-amd64.iso of=/dev/sda status=progress
