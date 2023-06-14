@@ -1,4 +1,4 @@
 ```bash
-# connect to psql
-psql -U postgres -h 127.0.0.1 -p 5432
+# connect to mysql
+mysql -u danang --port 3306 --host localhost db-csv -p
 ```
