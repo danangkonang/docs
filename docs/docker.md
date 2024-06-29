@@ -40,3 +40,23 @@ sudo service docker stop
 
 sudo rm -f /var/lib/docker/network/files/local-kv.db
 ```
+
+cat backup.sql | docker exec -i mariadb /bin/bash -c "/usr/bin/mysql -u root --password=Uk1F0r3xP@ssw0rd dev_ukiforex"
+docker exec -i mariadb /bin/bash -c "/usr/bin/mysql -u root --password=Uk1F0r3xP@ssw0rd dev_ukiforex" < backup.sql
+### backup databases
+```bash
+# mysql backup
+sudo su
+docker exec -i CONTAINER /bin/bash -c "mysqldump -u root --password=root DATABASE" > data.sql
+
+# mysql restore
+cat backup.sql | docker exec -i CONTAINER /usr/bin/mysql -u root --password=root DATABASE
+
+docker exec -i mariadb /bin/bash -c "/usr/bin/mysql -u root --password=Uk1F0r3xP@ssw0rd dev_ukiforex" < backup.sql
+
+docker cp backup.sql mysql-container:/backup.sql
+docker exec mysql-container bash -c "mysql -u root -p<your_password> < /backup.sql"
+
+# postgres
+docker exec -i CONTAINER /bin/bash -c "PGPASSWORD=password pg_dump --username root DATABASE" > dump.sql
+```
