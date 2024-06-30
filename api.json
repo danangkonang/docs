@@ -3,8 +3,38 @@
   "data": [
     {
       "id": "1",
-      "name": "tes",
-      "url": "lorem"
+      "name": "template 1",
+      "url": "https://localhost:9000"
+    },
+    {
+      "id": "2",
+      "name": "template 2",
+      "url": "https://localhost:9000"
+    },
+    {
+      "id": "3",
+      "name": "template 3",
+      "url": "https://localhost:9000"
+    },
+    {
+      "id": "4",
+      "name": "template 4",
+      "url": "https://localhost:9000"
+    },
+    {
+      "id": "5",
+      "name": "template 5",
+      "url": "https://localhost:9000"
+    },
+    {
+      "id": "6",
+      "name": "template 6",
+      "url": "https://localhost:9000"
+    },
+    {
+      "id": "7",
+      "name": "template 7",
+      "url": "https://localhost:9000"
     }
   ]
 }
