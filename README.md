@@ -12,6 +12,7 @@
 - [linux](https://github.com/danangkonang/docs/blob/master/docs/linux.md)
 - [php](https://github.com/danangkonang/docs/blob/master/docs/php.md)
 - [materi](https://github.com/danangkonang/docs/blob/master/docs/materi.md)
+- [wsl](https://github.com/danangkonang/docs/blob/master/docs/wsl.md)
 
 <!-- ```
 sudo dd if=kali-linux-2021.4-installer-amd64.iso of=/dev/sda status=progress
